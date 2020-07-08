@@ -1,6 +1,6 @@
 # The Allen Institute's SWDB Running on Google's Jyputer Service
 
-!()[./jupyter_book/images/hilux.jpg]
+!()[jupyter_book/images/hilux.jpg]
 
 This is a redeploy of The Allen Institute's SWDB, tweaked to run on
 Google' Jupyter service known as Colab.
