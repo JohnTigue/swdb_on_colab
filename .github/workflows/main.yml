@@ -3,7 +3,7 @@
 # License of code inited from: https://github.com/choldgraf/jupyter-book-deploy-demo/blob/master/LICENSE
 # Source file: https://raw.githubusercontent.com/choldgraf/jupyter-book-deploy-demo/master/.github/workflows/main.yml
 
-name: Publish JupyterBook to GitHub Pages
+name: Publish to GitHub Pages
 
 on: 
   push: # trigger build only when push to master
