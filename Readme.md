@@ -10,4 +10,4 @@ For a backgrounder on the deployment tech used herein, see
 [Jupyter Book and Colab](https://github.com/reconstrue/fieldnotes/tree/master/codebases/jupyter_book).
 
 
-![Actions Status](https://github.com/JohnTigue/swdb_hilux/workflows/.github/workflows/main.yml/badge.svg)
+![Actions Status](https://github.com/JohnTigue/swdb_hilux/workflows/Publish%20JupyterBook%20to%20GitHub%20Pages/badge.svg)
