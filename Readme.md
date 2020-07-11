@@ -10,7 +10,4 @@ For a backgrounder on the deployment tech used herein, see
 [Jupyter Book and Colab](https://github.com/reconstrue/fieldnotes/tree/master/codebases/jupyter_book).
 
 
-[![Actions Status](https://github.com/{owner}/{repo}/workflows/{workflow_name}/badge.svg)](https://github.com/{owner}/{repo}/actions)
-
-
 ![Actions Status](https://github.com/JohnTigue/swdb_hilux/workflows/.github/workflows/main.yml/badge.svg)
