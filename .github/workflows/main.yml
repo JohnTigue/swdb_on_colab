@@ -1,53 +1,49 @@
-name: Publish to GitHub Pages
-# License BSD-3-Clause
-# Inited from code with license: BSD-3-Clause
-# License of code inited from: https://github.com/choldgraf/jupyter-book-deploy-demo/blob/master/LICENSE
-# Source file: https://raw.githubusercontent.com/choldgraf/jupyter-book-deploy-demo/master/.github/workflows/main.yml
-
-on: 
-  push: # trigger build only when push to master
-    branches:
-      - master
-
-jobs:
-  build:
+--- 
+jobs: 
+  build: 
     runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7 
-    - name: Install Python dependencies
-      run: |
-        sudo apt-get install python3-pip
-        pip install jupyter-book
-        PATH="${PATH}:${HOME}/.local/bin"
-
-    - name: Create book template and build page HTML 
-      run: |
-        jupyter-book create mybook --content-folder content/
-        jupyter-book build ./mybook
-
-    - name: Install Ruby dependencies and make site
-      run: |
-        cd mybook
-        sudo gem install bundler:1.17.2 # for version see BUNDLED WITH in Gemfile.lock
-        bundle install
-        make site
-
-    - name: Push _site to gh-pages
-      run: |
-        sudo chown -R $(whoami):$(whoami) .
-        git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
-        git config --global user.name "$GITHUB_ACTOR"
-        cd mybook 
-        cp -r _site /tmp
-        rm -rf *
-        mv /tmp/_site/* .
-        git checkout -b gh-pages
-        git add --all --force
-        git commit -a --allow-empty-message -m ''
-        git remote set-url origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY"
-        git push --force origin gh-pages 
+    steps: 
+      - 
+        uses: actions/checkout@v2
+      - 
+        name: "Set up Python"
+        uses: actions/setup-python@v1
+        with: 
+          python-version: 3.7
+      - 
+        name: "Install Python dependencies"
+        run: |
+            sudo apt-get install python3-pip
+            pip install jupyter-book
+            PATH="${PATH}:${HOME}/.local/bin"
+      - 
+        name: "Create book template and build page HTML"
+        run: |
+            jupyter-book create mybook --content-folder content/
+            jupyter-book build ./mybook
+      - 
+        name: "Install Ruby dependencies and make site"
+        run: |
+            cd mybook
+            sudo gem install bundler:1.17.2 # for version see BUNDLED WITH in Gemfile.lock
+            bundle install
+            make site
+      - 
+        name: "Push _site to gh-pages"
+        run: "sudo chown -R $(whoami):$(whoami) .\n\
+            git config --global user.email \"$GITHUB_ACTOR@users.noreply.github.com\"\n\
+            git config --global user.name \"$GITHUB_ACTOR\"\n\
+            cd mybook \n\
+            cp -r _site /tmp\n\
+            rm -rf *\n\
+            mv /tmp/_site/* .\n\
+            git checkout -b gh-pages\n\
+            git add --all --force\n\
+            git commit -a --allow-empty-message -m ''\n\
+            git remote set-url origin \"https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY\"\n\
+            git push --force origin gh-pages \n"
+name: "Publish to GitHub Pages"
+true: 
+  push: 
+    branches: 
+      - master
