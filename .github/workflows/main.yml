@@ -1,9 +1,8 @@
+name: Publish to GitHub Pages
 # License BSD-3-Clause
 # Inited from code with license: BSD-3-Clause
 # License of code inited from: https://github.com/choldgraf/jupyter-book-deploy-demo/blob/master/LICENSE
 # Source file: https://raw.githubusercontent.com/choldgraf/jupyter-book-deploy-demo/master/.github/workflows/main.yml
-
-name: Publish to GitHub Pages
 
 on: 
   push: # trigger build only when push to master
