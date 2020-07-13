@@ -1,0 +1,213 @@
+* Notes from during Colabifying
+
+NOTE: This is only a demo concept to show that the distribution
+machinery (static Jupyter Book site linking to Colab for Jupter kernel
+VM if want to run) can be done. Yeah, it works. Tigue just does not
+particularly like Jupyter Book; it's a weak and sloppy implementation
+of a great idea. It is good enough to get the job done, though.
+
+
+
+Drive path issues were removed as not relevant on a non-Friday Harbor
+deploy; Colab can handle DL'ing data just fine. Also note that the
+data goes from brain-map.org to Colab directly. There is no local
+network hit for transfering data. This might prove quite helpful
+in a classroom or outreach context.
+
+
+HTML files such as
+DynamicBrain/solutions/Other/CellTypes_solutions.html are probably not
+needed; in the Colab context there is always a Jupyter server to render
+the *.ipynb files
+
+
+* Activity log
+** [2020-07-09 Thu]
+- Evening
+  - How to generate learning notebooks from solutions notebooks with all answers included
+  #+begin_src sh
+  # find notebooks in repo and just print
+  find . -name "*.ipynb" -exec echo {} \;
+
+  # jq e.g. from jupterbook hacking (was unable to overwrite
+  jq '.cells[].metadata.tags += ["full_width"]' cell_types_db.ipynb > temp.ipynb
+  
+  #+end_src
+** [2020-07-08 Wed]
+- Afternoon
+  - Grabbed hilux.jpg from https://silodrome.com/specifications-history-toyota-hilux/
+  - Update git remote https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/
+    #+begin_src bash
+    Probair:swdb_hilux jft$ git remote -v
+    origin    git@github.com:JohnTigue/swdb_on_colab.git (fetch)
+    origin	git@github.com:JohnTigue/swdb_on_colab.git (push)      
+    $ git remote set-url origin git@github.com:JohnTigue/swdb_hilux.git
+    $ git remote -v
+    origin    git@github.com:JohnTigue/swdb_hilux.git (fetch)
+    origin	git@github.com:JohnTigue/swdb_hilux.git (push)
+    #+end_src
+- Night
+  - [[https://colab.research.google.com/drive/1YAKvMs74phkCBpzlj2O8tzsym0H_aUcu][CellTypes.ipynb on Colab]]
+** [2020-06-28 Sun]
+- Morning
+  - Banged out JupyterBook-to-Colab 
+  - Got to editing
+    - [[https://colab.research.google.com/drive/1YAKvMs74phkCBpzlj2O8tzsym0H_aUcu#scrollTo=q9KjyBHsuJ9Z][CellTypes.ipynb]] is started right.
+** [2020-06-15 Mon]
+- Decided to move SWDB_2019 files into sub-dir swdb_hilux/swdb, maintaining original file tree
+
+** [2020-06-13 Sat]
+Added to each notebook needing AllenSDK:
+  !pip install allensdk
+
+Some notebooks were calling for python2, moved to 3.
+
+The 2017 notebooks assumed a data harddrive for network bandwidth limitations. Not an issue on Colab. No harddrive. So, just CellTypesCache()
+
+Straight up formatting fixes
+- Bunch of images links needed to be tweaked to work
+
+Move to using ToC
+- was
+  <p>**Some Title:**</p> doesn't format
+- so: 
+  ## Some Title:
+
+A new notebook by Colab will:
+#+BEGIN_SRC 
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled12.ipynb",
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [...]
+}  
+#+END_SRC
+colab will fill in "colab" when needed so don't need that
+
+Some AIBS notebooks were:
+#+BEGIN_SRC 
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 2",
+      "language": "python",
+      "name": "python2"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 2
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython2",
+      "version": "2.7.13"
+    },
+    "colab": {
+      "name": "CellTypes.ipynb",
+      "provenance": []
+    }
+  },
+
+#+END_SRC
+
+So, went for
+#+BEGIN_SRC 
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [...]
+}  
+#+END_SRC
+
+
+** [2019-08-26 Mon] (? There was no date)
+- Morning
+  - [[https://twitter.com/johntigue/status/1166022001133142023][Tweeting about SWDB & MICrONS]]
+  - Org'ing this subtree
+    - backed up after reorg
+- Evening
+  - Daring to be surprised! (I.e. work really begins, no more of this organizing shit!)
+  - Cloned https://github.com/JohnTigue/SWDB_2019
+  - Generated reconstrue/reconstrue_handbook
+    - Licensing
+      - Goal
+	- a patent clear lic that will also enable folding in AIBS content
+      - Conclusion
+	- bossDB is Apache. This is more important than the handbook, which is separate. So Apache everything, it's part of the pure
+	- Ergo, brand new repo [[https://github.com/reconstrue/reconstrue_handbook/blob/master/LICENSE][reconstrue_handbook/LICENSE]] is ASL2.0
+      - Research
+	- licenses and patents
+	  - Pretty good
+	    - [[https://medium.com/@robmuh/why-choose-apache-2-0-license-4253379b00ce][Why Choose Apache-2.0 License?]]
+              #+BEGIN_QUOTE
+              Apache-2.0 Explicitly Grant Patents (MIT Does Not)
+
+              Ariel Reinitz (a patent lawyer) writes a great [[https://hackernoon.com/4-lessons-from-the-react-patent-license-controversy-3da3c4baf3a4][summary]]
+              of why this explicit granting of patent rights
+              matters. In short, it gives some legal wiggle room
+              that has not been tested in court. That makes me (and
+              others) uncomfortable. From my experience at Nike and
+              IBM uncomfortable is a thing.
+
+              Uncomfortable can block using a technology, hiring a
+              developer, or going public with a contribution. It
+              means that if there is a comfortable place to go, go
+              there instead. Apache, with its long, explicit
+              language that says ultimately what most think MIT
+              does, is more comfortable, even if it is harder on the
+              eyes and has a lot more legalese.
+              #+END_QUOTE
+	    - [[https://wesmckinney.com/blog/react-bsd-patents/][Software patents are evil, but BSD+Patents is probably not the solution]]
+              #+BEGIN_QUOTE
+              [ASL2.0] makes patent grant rights explicit. In other words, the
+              license grants users unrestricted use of any patented IP
+              in the codebase in perpetuity. This patent grant applies
+              transitively to any projects that use or redistribute
+              the project in question.
+              #+END_QUOTE
+	    - [[https://news.ycombinator.com/item?id=3402450][Do not use MIT (or BSD)]]
+	    - [[https://opensource.stackexchange.com/questions/217/what-are-the-essential-differences-between-the-bsd-and-mit-licences][A stackexchange]]
+              #+BEGIN_QUOTE
+              When talking about BSD license, you have to be aware
+              that there is not one, but actually three different BSD
+              licenses. The most basic is the two-clause BSD license:
+              #+END_QUOTE
+	  - Meh
+	    - [[https://softwareengineering.stackexchange.com/a/122008][meh, but worth a read]]
+	  - Sturgeons Revelation
+	    - [[https://snyk.io/blog/mit-apache-bsd-fairest-of-them-all/][poorly written for a legal issues document]]
+	- Existing repos
+	  - Apache 2.0
+	    - [[https://github.com/jhuapl-boss/boss/blob/master/LICENSE.md][bossDB]]
+	  - Allen 2+1
+	    - [[https://github.com/AllenInstitute/SWDB_2019/blob/master/LICENSE.txt][SWDB_2019]]
+	    - [[https://github.com/AllenInstitute/AllenSDK/blob/master/LICENSE.txt][AllenSDK]]
+  - https://jupyter.org/jupyter-book/intro.html
+** [2019-08-24 Sat]
+- Just web surfing
+** [2019-08-21 Wed]
+- Found https://github.com/AllenInstitute/SWDB_2019
+- Forked to: https://github.com/JohnTigue/SWDB_2019
+** [2019-05-01 Wed]
+- text grooming and git commit for the day
+** [2019-04-30 Tue]
+- How to wire up the 3 datasets
