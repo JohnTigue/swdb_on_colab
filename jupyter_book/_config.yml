@@ -16,14 +16,14 @@
 
 #######################################################################################
 # Jekyll site settings
-title: YOUR BOOK NAME
-author: YOUR AUTHOR NAME
-email: YOUR EMAIL
+title: SWDB Hilux
+author: John Tigue
+email: john@tigue.com
 description: >-
-  This is an example book built with Jupyter Books.
+  The Allen Institute's SWDB deployed on Colab
 
-baseurl: /  # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
-url: YOUR URL                  # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: /swdb_hilux # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
+url: https://johntigue.github.io # the base hostname & protocol for your site, e.g. http://example.com
 
 
 #######################################################################################

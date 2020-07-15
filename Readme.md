@@ -1,4 +1,4 @@
-# The Allen Institute's SWDB on Colab
+# The Allen Institute's SWDB deployed on Colab
 
 ![](jupyter_book/content/images/hilux.jpg)
 
