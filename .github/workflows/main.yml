@@ -47,12 +47,15 @@ jobs:
         sudo chown -R $(whoami):$(whoami) .
         git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
         git config --global user.name "$GITHUB_ACTOR"
-        cd jupyter_book 
+        cd jupyter_book
+	echo ------------- JFT in ------------
+	ls _site
+	ehco ------------- JFT out -----------
         cp -r _site /tmp
         rm -rf *
         mv /tmp/_site/* .
         git checkout -b gh-pages
         git add --all --force
-        git commit -a --allow-empty-message -m ''
+        git commit -a -m 'Added by GHActions via main.yml' # orig: git commit -a --allow-empty-message -m ''
         git remote set-url origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY"
         git push --force origin gh-pages 
