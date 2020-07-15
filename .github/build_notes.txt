@@ -1,9 +1,10 @@
-# GitHub Actions
-
 The subdirectory `workflows` contains YAML for instructing GitHub how
 to build and publish the HTML rendering of the Jupyter Book upon push
-to master. It's all basic GitHub Actions crud. If things are not going
-well during your deploy, consider 
-[Enabling debug logging for GitHub Actions](https://docs.github.com/en/actions/configuring-and-managing-workflows/managing-a-workflow-run#enabling-debug-logging).
+to master. It's all basic GitHub Actions crud. 
+
+If things are not going
+well during your deploy, consider Enabling debug logging for GitHub Actions:
+
+https://docs.github.com/en/actions/configuring-and-managing-workflows/managing-a-workflow-run#enabling-debug-logging
 
 

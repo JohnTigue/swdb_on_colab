@@ -29,15 +29,15 @@ jobs:
 
     - name: Create book template and build page HTML 
       run: |
-        jupyter-book create mybook # WHY CREATE? This seems really stupid. 0.7.0 or higher? --content-folder content/
-        if [ -f ./mybook/requirements.txt ]; then pip install -r ./mybook/requirements.txt; fi
-        ls mybook # cp -r swdb mybook
+        #jupyter-book create mybook # WHY CREATE? This seems really stupid. 0.7.0 or higher? --content-folder content/
+        if [ -f ./jupyter_book/requirements.txt ]; then pip install -r ./jupyter_book/requirements.txt; fi
+        ls jupyter_book # cp -r swdb mybook
         # cp -r
-        jupyter-book build ./mybook
+        jupyter-book build ./jupyter_book
 
     - name: Install Ruby dependencies and make site
       run: |
-        cd mybook
+        cd jupyter_book
         sudo gem install bundler:1.17.2 # for version see BUNDLED WITH in Gemfile.lock
         bundle install
         make site
@@ -47,7 +47,7 @@ jobs:
         sudo chown -R $(whoami):$(whoami) .
         git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
         git config --global user.name "$GITHUB_ACTOR"
-        cd mybook 
+        cd jupyter_book 
         cp -r _site /tmp
         rm -rf *
         mv /tmp/_site/* .
