@@ -27,7 +27,9 @@ jobs:
 
     - name: Create book template and build page HTML 
       run: |
-        jupyter-book create mybook --content-folder content/
+        jupyter-book create mybook # 0.7.0 or higher? --content-folder content/
+        ls mybook # cp -r swdb mybook
+	# cp -r
         jupyter-book build ./mybook
 
     - name: Install Ruby dependencies and make site
