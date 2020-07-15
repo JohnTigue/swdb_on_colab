@@ -50,7 +50,7 @@ jobs:
         cd jupyter_book
         echo ------------- JFT in ------------
         ls _site
-        ehco ------------- JFT out -----------
+        echo ------------- JFT out -----------
         cp -r _site /tmp
         rm -rf *
         mv /tmp/_site/* .
