@@ -4,7 +4,7 @@
 
 This repo contains a variant of the Allen Institute's 
 [SWDB_2019 repo](https://github.com/AllenInstitute/SWDB_2019), 
-tweaked to run on Google' Jupyter service known as Colab.
+tweaked to run on Google's Jupyter service, [Colab](https://colab.research.google.com).
 
 For a backgrounder on the deployment tech used herein, see 
 [Jupyter Book and Colab](https://github.com/reconstrue/fieldnotes/tree/master/codebases/jupyter_book).
