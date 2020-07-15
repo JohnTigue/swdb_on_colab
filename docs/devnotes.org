@@ -21,6 +21,9 @@ needed; in the Colab context there is always a Jupyter server to render
 the *.ipynb files
 
 
+For a backgrounder on the deployment tech used herein, see [[https://github.com/reconstrue/fieldnotes/tree/master/codebases/jupyter_book][Jupyter Book and Colab]].
+
+
 * Activity log
 ** [2020-07-09 Thu]
 - Evening

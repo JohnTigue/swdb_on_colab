@@ -24,12 +24,12 @@ jobs:
     - name: Install Python dependencies
       run: |
         sudo apt-get install python3-pip
-        pip install jupyter-book
+        pip install jupyter-book==0.7.1
         PATH="${PATH}:${HOME}/.local/bin"
 
     - name: Create book template and build page HTML 
       run: |
-        jupyter-book create mybook # 0.7.0 or higher? --content-folder content/
+        jupyter-book create mybook # WHY CREATE? This seems really stupid. 0.7.0 or higher? --content-folder content/
         if [ -f ./mybook/requirements.txt ]; then pip install -r ./mybook/requirements.txt; fi
         ls mybook # cp -r swdb mybook
         # cp -r
