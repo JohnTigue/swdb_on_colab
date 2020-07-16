@@ -58,7 +58,7 @@ jobs:
         cp -r _site /tmp
         rm -rf *
         mv /tmp/_site/* .
-        echo --- just before gitting
+        echo --- just before gitting: $GITHUB_ACTOR,  ${{ secrets.GITHUB_TOKEN }}, $GITHUB_REPOSITORY
         ls
         git checkout -b gh-pages
         git add --all --force
