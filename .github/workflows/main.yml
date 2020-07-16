@@ -36,7 +36,7 @@ jobs:
         # cp -r
         echo -- JFT about to jyputer-book build
         jupyter-book build --path-output build/ ./jupyter_book
-	ls build/
+        ls build/
 
     - name: Install Ruby dependencies and make site
       run: |
