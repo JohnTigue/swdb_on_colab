@@ -36,11 +36,11 @@ jobs:
         # cp -r
         echo -- JFT about to jyputer-book build
         jupyter-book build --path-output build/ ./jupyter_book
-        ls build/
+      	  ls build/
 
     - name: Install Ruby dependencies and make site
       run: |
-        cp jupyter_book/* build/
+        cp -r jupyter_book/* build/
         cd build/
         sudo gem install bundler:1.17.2 # for version see BUNDLED WITH in Gemfile.lock
         bundle install
