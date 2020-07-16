@@ -31,14 +31,16 @@ jobs:
     - name: Create book template and build page HTML 
       run: |
         # jupyter-book create mybook # WHY CREATE? This seems really stupid. 0.7.0 or higher? --content-folder content/
-        if [ -f ./jupyter_book/requirements.txt ]; then pip install -r ./jupyter_book/requirements.txt; fi
+        if [ -f ./jupyter_book/requirements.txt ]; then pip install --quiet -r ./jupyter_book/requirements.txt; fi
         ls jupyter_book # cp -r swdb mybook
         # cp -r
         echo -- JFT about to jyputer-book build
         jupyter-book build --path-output build/ ./jupyter_book
+	ls build/
 
     - name: Install Ruby dependencies and make site
       run: |
+        cp jupyter_book/* build/
         cd build/
         sudo gem install bundler:1.17.2 # for version see BUNDLED WITH in Gemfile.lock
         bundle install
