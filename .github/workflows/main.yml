@@ -50,11 +50,16 @@ jobs:
         cd jupyter_book
         echo ------------- JFT in ------------
         pwd  
+        echo ---
         ls
+        echo ---
+        ls _site
         echo ------------- JFT out -----------
         cp -r _site /tmp
         rm -rf *
         mv /tmp/_site/* .
+        echo --- just before gitting
+        ls
         git checkout -b gh-pages
         git add --all --force
         git commit -a -m 'Added by GHActions via main.yml' # orig: git commit -a --allow-empty-message -m ''
