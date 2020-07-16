@@ -26,20 +26,20 @@ jobs:
         sudo apt-get install python3-pip
         pip install jupyter-book==0.7.1
         PATH="${PATH}:${HOME}/.local/bin"
-        jupyter-book --version # --version is a 0.7.x thing, not 0.6.x
+        jupyter-book --version # --version flag is a 0.7.x thing, not 0.6.x
 
     - name: Create book template and build page HTML 
       run: |
-        #jupyter-book create mybook # WHY CREATE? This seems really stupid. 0.7.0 or higher? --content-folder content/
+        # jupyter-book create mybook # WHY CREATE? This seems really stupid. 0.7.0 or higher? --content-folder content/
         if [ -f ./jupyter_book/requirements.txt ]; then pip install -r ./jupyter_book/requirements.txt; fi
         ls jupyter_book # cp -r swdb mybook
         # cp -r
         echo -- JFT about to jyputer-book build
-        jupyter-book build ./jupyter_book
+        jupyter-book build --path-output build/ ./jupyter_book
 
     - name: Install Ruby dependencies and make site
       run: |
-        cd jupyter_book
+        cd build/
         sudo gem install bundler:1.17.2 # for version see BUNDLED WITH in Gemfile.lock
         bundle install
         make site
@@ -49,7 +49,7 @@ jobs:
         sudo chown -R $(whoami):$(whoami) .
         git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
         git config --global user.name "$GITHUB_ACTOR"
-        cd jupyter_book
+        cd build
         echo ------------- JFT in ------------
         pwd  
         echo ---
