@@ -23,8 +23,8 @@ jobs:
 
     - name: Install Python dependencies
       run: |
-        sudo apt-get install python3-pip
-        pip install jupyter-book==0.7.1
+        sudo apt-get -q install python3-pip
+        pip install --quite jupyter-book==0.7.1
         PATH="${PATH}:${HOME}/.local/bin"
         jupyter-book --version # --version flag is a 0.7.x thing, not 0.6.x
 
@@ -35,7 +35,7 @@ jobs:
         ls jupyter_book # cp -r swdb mybook
         # cp -r
         echo -- JFT about to jyputer-book build
-        jupyter-book build --path-output build/ ./jupyter_book	
+        jupyter-book build --path-output build/ ./jupyter_book  
         ls build/
 
     - name: Install Ruby dependencies and make site
@@ -59,9 +59,10 @@ jobs:
         echo ---
         ls _build 
         echo ------------- JFT out -----------
-        cp -r _build /tmp
+        cp -r _build/html /tmp
+        ls /tmp/
         rm -rf *
-        mv /tmp/_build/* ..   # orig: mv /tmp/_site/* . # b/c old code expected to be in root of repo
+        mv /tmp/html/* ..   # orig: mv /tmp/_site/* . # b/c old code expected to be in root of repo
         echo --- JFT: just before gitting: $GITHUB_ACTOR,  ${{ secrets.GITHUB_TOKEN }}, $GITHUB_REPOSITORY
         ls
         git checkout -b gh-pages
