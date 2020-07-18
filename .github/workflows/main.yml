@@ -24,7 +24,7 @@ jobs:
     - name: Install Python dependencies
       run: |
         sudo apt-get -q install python3-pip
-        pip install --quite jupyter-book==0.7.1
+        pip install --quiet jupyter-book==0.7.1
         PATH="${PATH}:${HOME}/.local/bin"
         jupyter-book --version # --version flag is a 0.7.x thing, not 0.6.x
 
