@@ -35,18 +35,18 @@ jobs:
         ls jupyter_book # cp -r swdb mybook
         # cp -r
         echo -- JFT about to jyputer-book build
-        jupyter-book build --path-output build/ ./jupyter_book
+        jupyter-book build --path-output build/ ./jupyter_book	
         ls build/
 
     - name: Install Ruby dependencies and make site
       run: |
         cp -r jupyter_book/* build/
         cd build/
-        sudo gem install bundler:1.17.2 # for version see BUNDLED WITH in Gemfile.lock
+        sudo gem install bundler:1.17.2 --quiet # for version see BUNDLED WITH in Gemfile.lock
         bundle install
         make site
 
-    - name: Push _site to gh-pages
+    - name: Push output to gh-pages
       run: |
         sudo chown -R $(whoami):$(whoami) .
         git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
@@ -57,11 +57,11 @@ jobs:
         echo ---
         ls
         echo ---
-        ls _site        
+        ls _build 
         echo ------------- JFT out -----------
-        cp -r _site /tmp
+        cp -r _build /tmp
         rm -rf *
-        mv /tmp/_site/* .. # orig: mv /tmp/_site/* . # b/c old code expected to be in root of repo
+        mv /tmp/_build/* ..   # orig: mv /tmp/_site/* . # b/c old code expected to be in root of repo
         echo --- JFT: just before gitting: $GITHUB_ACTOR,  ${{ secrets.GITHUB_TOKEN }}, $GITHUB_REPOSITORY
         ls
         git checkout -b gh-pages
