@@ -18,6 +18,8 @@
 # Jekyll site settings
 title: SWDB Hilux
 author: John Tigue
+logo: content/images/logo/logo.png
+
 email: john@tigue.com
 description: >-
   The Allen Institute's SWDB deployed on Colab
