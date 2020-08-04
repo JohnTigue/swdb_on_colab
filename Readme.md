@@ -6,6 +6,8 @@ This repo contains a variant of the Allen Institute's
 [SWDB_2019 repo](https://github.com/AllenInstitute/SWDB_2019), 
 tweaked to run on Google's Jupyter service, [Colab](https://colab.research.google.com).
 
+![](docs/images/hilux_network_flow.jpg)
+
 For more info see [the developer docs](./docs/devnotes.org).
 
 
