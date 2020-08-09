@@ -13,6 +13,6 @@ For more info see [the developer docs](./docs/devnotes.org).
 
 ## Status
 
-GitHub Actions are used to build and publish this Jupyter Book, trigger on push to master branch.
+GitHub Actions are used to build and publish this Jupyter Book, triggered by a push to the master branch.
 
 ![Actions Status](https://github.com/JohnTigue/swdb_hilux/workflows/Publish%20to%20GitHub%20Pages/badge.svg)
