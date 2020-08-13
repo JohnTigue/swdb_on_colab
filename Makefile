@@ -1,43 +1,13 @@
-.PHONY: help book clean serve
+.PHONY: prep_for_build
 
-help:
-	@echo "Please use 'make <target>' where <target> is one of:"
-	@echo "  install     to install the necessary dependencies for jupyter-book to build"
-	@echo "  book        to convert the content/ folder into Jekyll markdown in _build/"
-	@echo "  clean       to clean out site build files"
-	@echo "  runall      to run all notebooks in-place, capturing outputs with the notebook"
-	@echo "  serve       to serve the repository locally with Jekyll"
-	@echo "  build       to build the site HTML and store in _site/"
-	@echo "  site 		 to build the site HTML, store in _site/, and serve with Jekyll"
-
-
-install:
-	jupyter-book install ./
-
-book:
-	jupyter-book build ./
-
-runall:
-	jupyter-book run ./content
+# In the repo, AIBS' SWDB content and Jupyter Book support are intentionally separate
+# First step in a build is to merge the two 
+prep_for_build:
+	@echo "Prepping for build. Copying swbd/** jupyter_boo/** to _build/"
+	@echo "Merging swdb/ and jupyter_book/"
+	mkdir -p _build/input/swdb/
+	cp -R swdb/* _build/input/swdb/
+	cp -R jupyter_book/* _build/input/
 
 clean:
-	python scripts/clean.py
-
-serve:
-	bundle exec guard
-
-build:
-	jupyter-book build ./ 
-
-site: build
-	bundle exec jekyll build
-	touch _site/.nojekyll
-
-
-# In the repo, SWDB content and JB support are intentionally separate
-# First step in a build is to merge the two 
-merge:
-	@echo "Merging swdb/ and jupyter_book"
-	mkdir _build/
-	mkdir _build/input/
-	cp swdb/* _build/input/
+	rm -R _build
